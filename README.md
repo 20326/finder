@@ -15,7 +15,7 @@ func main() {
 	engine := fd.NewEngine()
 
 	// register
-	engine.Register(fd.KindPhone, fd.NewPhoneFinder("../phone.db"))
+	engine.Register(fd.KindPhone, fd.NewPhoneFinder("../phone.2004.dat"))
 
 	pf := engine.GetPhoneFinder()
 	phoneResult, err := pf.Find("18600228899")
@@ -58,7 +58,11 @@ go test -v --bench="."
 2. 记录区 中每条记录的格式为"<省份>|<城市>|<邮编>|<长途区号>\0"。 每条记录以'\0'结束；
 3. 索引区 中每条记录的格式为"<手机号前七位><记录区的偏移><卡类型>"，每个索引的长度为9个字节；
 
-https://git.oschina.net/oss/phonedata/attach_files
+### 手机号归属地数据打包
+
+* [Python打包]https://github.com/20326/packme
+* [csv最新文件]https://git.oschina.net/oss/phonedata/attach_files
+
 
 ### GEO数据库 ip2region.db
 
