@@ -83,7 +83,7 @@ func (engine *Engine) GetPhoneFinder() *PhoneFinder {
 	return fd.(*PhoneFinder)
 }
 
-// GetPhoneFinder with @key return @finder.
+// GetIP2LocFinder with @key return @finder.
 func (engine *Engine) GetIP2LocFinder() *IP2LocFinder {
 	fd := engine.finderMap[KindIP2Loc]
 	if fd == nil {

@@ -969,7 +969,6 @@ var (
 		"陇南":   "longnan",
 	}
 
-	// 含义见：/browse/HOOP-1864 中附件“新版配置.xls”
 	HeWeatherImgMap = map[string]string{
 		"100": "w_01_01_00", // 晴热／晴
 		"101": "w_02_08_00", // 局部多云／多云
