@@ -64,3 +64,9 @@ https://git.oschina.net/oss/phonedata/attach_files
 
 https://github.com/lionsoul2014/ip2region/raw/master/data/ip2region.db
 
+
+## License
+
+Copyright (c) 2020 (brian)
+
+Licensed under the [MIT license](https://opensource.org/licenses/MIT) ([`LICENSE`](LICENSE)).
