@@ -1,11 +1,10 @@
 Finder (GEO, China Phone, Weather)
 ----------------------------
-### 安装使用
+### 快速使用
 ```
 package main
 
 import (
-	"encoding/json"
 	"log"
 
 	fd "github.com/20326/finder"
@@ -30,7 +29,6 @@ func main() {
 }
 
 ```
-### 快速使用
 
 ### 性能测试
 
