@@ -11,9 +11,9 @@ const (
 	CMCC             byte = iota + 0x01 //中国移动
 	CUCC                                //中国联通
 	CTCC                                //中国电信
-	CTCC_V                              //电信虚拟运营商
-	CUCC_V                              //联通虚拟运营商
-	CMCC_V                              //移动虚拟运营商
+	CTCC_V                              //中国电信虚拟运营商
+	CUCC_V                              //中国联通虚拟运营商
+	CMCC_V                              //中国移动虚拟运营商
 	PhoneIntLen      = 4
 	PhoneCharLen     = 1
 	PhoneHeadLength  = 8

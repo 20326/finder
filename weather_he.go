@@ -16,7 +16,7 @@ func HeWeatherFind(wf *WeatherFinder, city string, kind string) (*WeatherResult,
 	var wr *WeatherResult
 
 	targetUrl := fmt.Sprintf("https://free-api.heweather.net/s6/%s/now?key=%s&location=%s", kind, wf.AppKey, city)
-	log.Printf("FetchNow city: %s, kind: %s, url: %s", city, kind, targetUrl)
+	log.Printf("HeWeatherFind city: %s, kind: %s, url: %s", city, kind, targetUrl)
 
 	// fetch data
 	response, body, err := gorequest.New().

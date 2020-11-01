@@ -10,7 +10,7 @@ var (
 )
 
 func init() {
-	pf = NewPhoneFinder("./phone.db")
+	pf = NewPhoneFinder("./phone.2004.dat")
 }
 
 func BenchmarkBtreeSearch(b *testing.B) {
