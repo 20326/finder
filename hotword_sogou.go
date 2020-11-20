@@ -33,7 +33,6 @@ func SoGouHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 	if nil != cutErr {
 		return nil, errors.New("fetch jsonp failed")
 	}
-	log.Printf("SoGouHotWordFind jsonp: %s", jsonp)
 
 	hotwords := gjson.ParseBytes([]byte(jsonp))
 	for _, hotword := range hotwords.Array() {
