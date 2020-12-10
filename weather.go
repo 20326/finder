@@ -53,7 +53,7 @@ func (wf *WeatherFinder) Close() {
 }
 
 func (wf *WeatherFinder) Version() string {
-	return "v1.0.0"
+	return VERSION
 }
 
 func NewWeatherFinder(provider string, appKey string, ttl int) *WeatherFinder {

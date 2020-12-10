@@ -5,7 +5,6 @@ import (
 	"errors"
 	"log"
 	"net/http"
-	"regexp"
 	"strconv"
 	"time"
 
@@ -13,7 +12,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-func SoGouHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
+func SoGouHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*HotWordResult, error) {
 	var hwrs []*HotWordResult
 
 	log.Printf("SoGouHotWordFind url: %s", SoGouHotWordsUrl)
@@ -29,7 +28,7 @@ func SoGouHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 		return nil, errors.New("fetch sogou hotspot failed")
 	}
 
-	jsonp, cutErr := cutJsonp(body)
+	jsonp, cutErr := CutJsonp(`\[.*\]`, body)
 	if nil != cutErr {
 		return nil, errors.New("fetch jsonp failed")
 	}
@@ -38,7 +37,7 @@ func SoGouHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 	for _, hotword := range hotwords.Array() {
 		keyword := hotword.Get("word").String()
 		weight, _ := strconv.Atoi(hotword.Get("weight").String())
-		suggestUrl := hwf.GetSuggestUrl(keyword)
+		suggestUrl := hwf.GetSuggestUrl(keyword, from, suggestUrl)
 
 		hwr := &HotWordResult{
 			Keyword:    keyword,
@@ -48,13 +47,4 @@ func SoGouHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 		hwrs = append(hwrs, hwr)
 	}
 	return hwrs, nil
-}
-
-func cutJsonp(jsonp string) (string, error) {
-	infoRegex := regexp.MustCompile(`\[.*\]`)
-	slices := infoRegex.FindStringSubmatch(jsonp)
-	if len(slices) < 1 {
-		return "", errors.New("invalid jsonp")
-	}
-	return slices[0], nil
 }

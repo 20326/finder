@@ -5,10 +5,13 @@ import (
 )
 
 const (
-	KindIP2Loc  = "ip2location"
-	KindPhone   = "phone"
-	KindWeather = "weather"
-	KindHotword = "hotword"
+	KindIP2Loc     = "ip2location"
+	KindPhone      = "phone"
+	KindWeather    = "weather"
+	KindHotword    = "hotword"
+	KindSuggestion = "suggestion"
+
+	VERSION = "v1.0.6"
 )
 
 var (
@@ -109,4 +112,13 @@ func (engine *Engine) GetHowWordFinder() *HotWordFinder {
 		panic("not found finder")
 	}
 	return fd.(*HotWordFinder)
+}
+
+// GetSuggestionFinder with @key return @finder.
+func (engine *Engine) GetSuggestionFinder() *SuggestionFinder {
+	fd := engine.finderMap[KindSuggestion]
+	if fd == nil {
+		panic("not found finder")
+	}
+	return fd.(*SuggestionFinder)
 }

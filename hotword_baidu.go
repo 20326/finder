@@ -12,7 +12,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-func BaiduHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
+func BaiduHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*HotWordResult, error) {
 	var hwrs []*HotWordResult
 
 	log.Printf("BaiduHotWordFind url: %s", BaiduHotWordsUrl)
@@ -40,7 +40,7 @@ func BaiduHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 	for _, hotword := range hotwords.Array() {
 		keyword := hotword.Get("keyword").String()
 		weight, _ := strconv.Atoi(hotword.Get("searches").String())
-		suggestUrl := hwf.GetSuggestUrl(keyword)
+		suggestUrl := hwf.GetSuggestUrl(keyword, from, suggestUrl)
 
 		hwr := &HotWordResult{
 			Keyword:    keyword,

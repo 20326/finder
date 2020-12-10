@@ -12,7 +12,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-func TouTiaoHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
+func TouTiaoHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*HotWordResult, error) {
 	var hwrs []*HotWordResult
 
 	log.Printf("TouTiaoHotWordFind url: %s", TouTiaoHotWordsUrl)
@@ -33,7 +33,7 @@ func TouTiaoHotWordFind(hwf *HotWordFinder) ([]*HotWordResult, error) {
 	for _, hotword := range hotwords.Array() {
 		keyword := hotword.Get("Title").String()
 		weight, _ := strconv.Atoi(hotword.Get("HotValue").String())
-		suggestUrl := hwf.GetSuggestUrl(keyword)
+		suggestUrl := hwf.GetSuggestUrl(keyword, from, suggestUrl)
 
 		hwr := &HotWordResult{
 			Keyword:    keyword,
