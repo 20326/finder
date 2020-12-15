@@ -26,17 +26,17 @@ func main() {
 	locResult, err := lf.Find("175.25.21.39", "memory")
 	log.Printf("Location: %v err: %v", locResult, err)
 
-	wf := engine.GetWeatherFinder()
+	wf := engine.GetWeatherFinder(fd.WeatherHe)
 	weatherResult, err := wf.Find("beijing", fd.WeatherKindHeAir)
 	weatherData, err := json.Marshal(weatherResult)
 	log.Printf("Weather: %v err: %v", string(weatherData), err)
 
-	hwf := engine.GetHowWordFinder()
+	hwf := engine.GetHowWordFinder(fd.HotWordTouTiao)
 	hotwordResult, err := hwf.Find("", "")
 	hotwordData, err := json.Marshal(hotwordResult)
 	log.Printf("HowWord: %v err: %v", string(hotwordData), err)
 
-	suf := engine.GetSuggestionFinder()
+	suf := engine.GetSuggestionFinder(fd.SuggestionBaidu)
 	suggestResult, err := suf.Find("苹果", "", "")
 	suggestData, err := json.Marshal(suggestResult)
 	log.Printf("Suggestion: %v err: %v", string(suggestData), err)

@@ -49,6 +49,11 @@ func (engine *Engine) Register(key string, finder Finder) {
 	engine.finderMap[key] = finder
 }
 
+// Register set @finder with @kind @key to local memory.
+func (engine *Engine) RegisterByKind(kind, key string, finder Finder) {
+	engine.finderMap[kind+"_"+key] = finder
+}
+
 // Get with @key return @finder.
 func (engine *Engine) Get(key string) Finder {
 	return engine.finderMap[key]
@@ -97,8 +102,8 @@ func (engine *Engine) GetIP2LocFinder() *IP2LocFinder {
 }
 
 // GetWeatherFinder with @key return @finder.
-func (engine *Engine) GetWeatherFinder() *WeatherFinder {
-	fd := engine.finderMap[KindWeather]
+func (engine *Engine) GetWeatherFinder(key string) *WeatherFinder {
+	fd := engine.finderMap[KindWeather+"_"+key]
 	if fd == nil {
 		panic("not found finder")
 	}
@@ -106,8 +111,8 @@ func (engine *Engine) GetWeatherFinder() *WeatherFinder {
 }
 
 // GetHowWordFinder with @key return @finder.
-func (engine *Engine) GetHowWordFinder() *HotWordFinder {
-	fd := engine.finderMap[KindHotword]
+func (engine *Engine) GetHowWordFinder(key string) *HotWordFinder {
+	fd := engine.finderMap[KindHotword+"_"+key]
 	if fd == nil {
 		panic("not found finder")
 	}
@@ -115,8 +120,8 @@ func (engine *Engine) GetHowWordFinder() *HotWordFinder {
 }
 
 // GetSuggestionFinder with @key return @finder.
-func (engine *Engine) GetSuggestionFinder() *SuggestionFinder {
-	fd := engine.finderMap[KindSuggestion]
+func (engine *Engine) GetSuggestionFinder(key string) *SuggestionFinder {
+	fd := engine.finderMap[KindSuggestion+"_"+key]
 	if fd == nil {
 		panic("not found finder")
 	}
