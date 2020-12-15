@@ -3,19 +3,19 @@ package finder
 import (
 	"crypto/tls"
 	"errors"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/phuslu/log"
 	"github.com/tidwall/gjson"
 )
 
 func BaiduHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*HotWordResult, error) {
 	var hwrs []*HotWordResult
 
-	log.Printf("BaiduHotWordFind url: %s", BaiduHotWordsUrl)
+	log.Debug().Str("provider", hwf.Provider).Str("url", BaiduHotWordsUrl).Msgf("BaiduHotWordFind")
 
 	// fetch data
 	response, body, err := gorequest.New().

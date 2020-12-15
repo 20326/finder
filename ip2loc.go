@@ -1,9 +1,8 @@
 package finder
 
 import (
-	"log"
-
 	"github.com/lionsoul2014/ip2region/binding/golang/ip2region"
+	"github.com/phuslu/log"
 )
 
 /////////////////////////////
@@ -34,7 +33,7 @@ type IP2LocFinder struct {
 func NewIP2LocFinder(db string) *IP2LocFinder {
 	engine, err := ip2region.New(db)
 	if err != nil {
-		log.Fatalf("init ip2region db:%s, err: %s", db, err)
+		log.Fatal().Msgf("init ip2region db:%s, err: %s", db, err)
 	}
 	return &IP2LocFinder{engine}
 }

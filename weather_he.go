@@ -4,11 +4,11 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/phuslu/log"
 	"github.com/tidwall/gjson"
 )
 
@@ -16,7 +16,7 @@ func HeWeatherFind(wf *WeatherFinder, city string, kind string) (*WeatherResult,
 	var wr *WeatherResult
 
 	targetUrl := fmt.Sprintf("https://free-api.heweather.net/s6/%s/now?key=%s&location=%s", kind, wf.AppKey, city)
-	log.Printf("HeWeatherFind city: %s, kind: %s, url: %s", city, kind, targetUrl)
+	log.Debug().Str("city", city).Str("kind", kind).Str("provider", wf.Provider).Str("url", targetUrl).Msgf("HeWeatherFind")
 
 	// fetch data
 	response, body, err := gorequest.New().

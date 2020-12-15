@@ -3,12 +3,12 @@ package finder
 import (
 	"crypto/tls"
 	"errors"
-	"log"
 	"net/http"
 	"strings"
 	"time"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/phuslu/log"
 	"github.com/tidwall/gjson"
 )
 
@@ -16,7 +16,7 @@ func BaiduSuggestionFind(suf *SuggestionFinder, keyword string, from string, sug
 	var surt []*SuggestionResult
 
 	baiduSuggestionUrl := strings.ReplaceAll(BaiduSuggestionUrl, "${keyword}", keyword)
-	log.Printf("BaiduSuggestionFind url: %s", baiduSuggestionUrl)
+	log.Debug().Str("provider", suf.Provider).Str("url", baiduSuggestionUrl).Msgf("BaiduSuggestionFind")
 
 	// fetch data
 	response, body, err := gorequest.New().
