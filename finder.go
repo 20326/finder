@@ -11,7 +11,7 @@ const (
 	KindHotword    = "hotword"
 	KindSuggestion = "suggestion"
 
-	VERSION = "v1.0.6"
+	VERSION = "v1.0.8"
 )
 
 var (
