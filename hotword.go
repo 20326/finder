@@ -15,18 +15,21 @@ const (
 	HotWordTouTiao = "toutiao"
 	HotWord360So   = "so"
 	HotWordSogou   = "sogou"
+	HotWordSm      = "sm"
 
 	// Url
 	BaiduHotWordsUrl   = "http://top.baidu.com/mobile_v2/buzz/hotspot"
 	SoHotWordsUrl      = "https://m.so.com/home/data?types=Hotwords&fmt=json"
 	SoGouHotWordsUrl   = "https://wap.sogou.com/data/hotwords/sogou_app.js"
 	TouTiaoHotWordsUrl = "https://i.snssdk.com/hot-event/hot-board/?count=50&tab_name=stream&origin=hot_board"
+	SmHotWordsUrl      = "http://hw.oupeng.com/sm.php"
 
 	// Suggest Url
 	DefaultBaiduSuggestUrlFmt   = "http://m.baidu.com/from=${from}/s?word=${keyword}&bd_page_type=1"
 	DefaultSoGouSuggestUrlFmt   = "https://wap.sogou.com/web/searchList.jsp?keyword=${keyword}&e=${from}"
 	Default360SoSuggestUrlFmt   = "https://m.so.com/s?q=${keyword}&src=${from}"
 	DefaultTouTiaoSuggestUrlFmt = "https://so.toutiao.com/search?keyword=${keyword}&traffic_source=${from}&original_source=1&source=client"
+	DefaultSmSuggestUrlFmt      = "http://m.yz2.sm.cn/s?q=${keyword}&by=hot&from=${from}"
 
 	// Config
 	HotWordHttpTimeout = 60
@@ -66,6 +69,8 @@ func (hwf *HotWordFinder) Find(from string, suggestUrl string) ([]*HotWordResult
 		return SoGouHotWordFind(hwf, from, suggestUrl)
 	case HotWordTouTiao:
 		return TouTiaoHotWordFind(hwf, from, suggestUrl)
+	case HotWordSm:
+		return SmHotWordFind(hwf, from, suggestUrl)
 	default:
 		break
 	}
@@ -87,6 +92,9 @@ func (hwf *HotWordFinder) GetSuggestUrl(keyword string, from string, suggestUrl 
 		break
 	case HotWordTouTiao:
 		suggestUrl = DefaultTouTiaoSuggestUrlFmt
+		break
+	case HotWordSm:
+		suggestUrl = DefaultSmSuggestUrlFmt
 		break
 	default:
 		break
