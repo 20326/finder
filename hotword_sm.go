@@ -29,17 +29,21 @@ func SmHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*HotWo
 
 	hotwords := gjson.ParseBytes([]byte(body))
 	// format json
+	lists := map[string]int64{}
 	for _, hotword := range hotwords.Array() {
 		keyword := hotword.Get("title").String()
 		weight := hotword.Get("hot_flag").Int()
 		suggestUrl := hwf.GetSuggestUrl(keyword, from, suggestUrl)
 
-		hwr := &HotWordResult{
-			Keyword:    keyword,
-			Weight:     int(weight),
-			SuggestUrl: suggestUrl,
+		if lists[keyword] == 0 {
+			lists[keyword] = weight
+			hwr := &HotWordResult{
+				Keyword:    keyword,
+				Weight:     int(weight),
+				SuggestUrl: suggestUrl,
+			}
+			hwrs = append(hwrs, hwr)
 		}
-		hwrs = append(hwrs, hwr)
 	}
 	return hwrs, nil
 }

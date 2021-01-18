@@ -22,7 +22,7 @@ const (
 	SoHotWordsUrl      = "https://m.so.com/home/data?types=Hotwords&fmt=json"
 	SoGouHotWordsUrl   = "https://wap.sogou.com/data/hotwords/sogou_app.js"
 	TouTiaoHotWordsUrl = "https://i.snssdk.com/hot-event/hot-board/?count=50&tab_name=stream&origin=hot_board"
-	SmHotWordsUrl      = "http://hw.oupeng.com/sm.php"
+	SmHotWordsUrl      = "http://api.m.sm.cn/rest?method=tools.hot&size=0"
 
 	// Suggest Url
 	DefaultBaiduSuggestUrlFmt   = "http://m.baidu.com/from=${from}/s?word=${keyword}&bd_page_type=1"
