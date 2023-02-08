@@ -11,7 +11,7 @@ const (
 	KindHotword    = "hotword"
 	KindSuggestion = "suggestion"
 
-	VERSION = "v1.0.12"
+	VERSION = "v1.0.14"
 )
 
 var (
@@ -19,16 +19,16 @@ var (
 	instance Engine
 )
 
-/////////////////////////////
+// ///////////////////////////
 // finder interface
-/////////////////////////////
+// ///////////////////////////
 type Finder interface {
 	Close()
 }
 
-/////////////////////////////
+// ///////////////////////////
 // finder engine
-/////////////////////////////
+// ///////////////////////////
 // Engine is default finder implement.
 type Engine struct {
 	finderMap map[string]Finder
