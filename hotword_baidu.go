@@ -36,12 +36,13 @@ func BaiduHotWordFind(hwf *HotWordFinder, from string, suggestUrl string) ([]*Ho
 	}
 
 	// format json
-	hotwords := result.Get("result.topwords")
+	hotwords := result.Get("data.cards.#[component=hotList].content")
 	for _, hotword := range hotwords.Array() {
-		keyword := hotword.Get("keyword").String()
-		weight, _ := strconv.Atoi(hotword.Get("searches").String())
+		keyword := hotword.Get("word").String()
+		weight, _ := strconv.Atoi(hotword.Get("hotScore").String())
 		suggestUrl := hwf.GetSuggestUrl(keyword, from, suggestUrl)
 
+		println(keyword, weight)
 		hwr := &HotWordResult{
 			Keyword:    keyword,
 			Weight:     weight,

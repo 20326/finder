@@ -18,7 +18,7 @@ const (
 	HotWordSm      = "sm"
 
 	// Url
-	BaiduHotWordsUrl   = "http://top.baidu.com/mobile_v2/buzz/hotspot"
+	BaiduHotWordsUrl   = "https://top.baidu.com/api/board?platform=wise&tab=realtime&tag=%7B%7D"
 	SoHotWordsUrl      = "https://m.so.com/home/data?types=Hotwords&fmt=json"
 	SoGouHotWordsUrl   = "https://wap.sogou.com/data/hotwords/sogou_app.js"
 	TouTiaoHotWordsUrl = "https://i.snssdk.com/hot-event/hot-board/?count=50&tab_name=stream&origin=hot_board"
@@ -35,9 +35,9 @@ const (
 	HotWordHttpTimeout = 60
 )
 
-/////////////////////////////
+// ///////////////////////////
 // HotWord Result
-/////////////////////////////
+// ///////////////////////////
 type HotWordResult struct {
 	Keyword    string
 	Weight     int
@@ -49,9 +49,9 @@ func (wr *HotWordResult) Json() string {
 	return string(body)
 }
 
-/////////////////////////////
+// ///////////////////////////
 // HotWord Finder
-/////////////////////////////
+// ///////////////////////////
 type HotWordFinder struct {
 	Provider   string
 	From       string
